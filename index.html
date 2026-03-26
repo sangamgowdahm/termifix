@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TermiFix — AI Terminal Intelligence</title>
+  <meta name="description" content="TermiFix is a local-first AI terminal that catches errors in real-time and fixes them instantly. Powered by local LLMs. Zero data sent.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       CURSOR GLOW
+  ══════════════════════════════════════════════ -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ══════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">Termi</span><span class="logo-accent">Fix</span>
+        <span class="logo-bracket">]</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#modules">Modules</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#pricing" class="btn-nav">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="particles" id="particles"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        <span>Local LLM · Zero Data Sent · Always Private</span>
+      </div>
+
+      <h1 class="hero-title reveal">
+        Your Terminal,<br>
+        <span class="gradient-text">Now Thinks.</span>
+      </h1>
+
+      <p class="hero-sub reveal">
+        TermiFix watches every command you run. The moment an error appears,<br>
+        it detects, explains, and offers an instant fix — powered entirely by local AI.
+      </p>
+
+      <div class="hero-cta reveal">
+        <a href="#pricing" class="btn-primary">
+          <span>Start Using TermiFix</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span>See Demo</span>
+        </a>
+      </div>
+
+      <div class="hero-stats reveal">
+        <div class="stat">
+          <span class="stat-num" data-count="20">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Instant Fixes</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-count="7">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Ecosystems</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-count="100">0</span><span class="stat-plus">%</span>
+          <span class="stat-label">Local & Private</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMINAL MOCKUP -->
+    <div class="terminal-wrap reveal-up">
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <div class="t-btn t-red"></div>
+          <div class="t-btn t-yellow"></div>
+          <div class="t-btn t-green"></div>
+          <span class="t-title">termifix — bash</span>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+          <div class="t-line"><span class="t-prompt">termifix myproject (main) ❯</span> <span class="t-cmd" id="tCmd"></span><span class="t-cursor">█</span></div>
+          <div class="t-output" id="tOutput"></div>
+        </div>
+      </div>
+      <div class="terminal-glow"></div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       TRUSTED BY
+  ══════════════════════════════════════════════ -->
+  <section class="trusted">
+    <div class="container">
+      <p class="trusted-label">Loved by developers at</p>
+      <div class="logo-track">
+        <div class="logo-slide">
+          <span>CloudNova</span>
+          <span>ByteForge</span>
+          <span>ApexStack</span>
+          <span>DevSphere</span>
+          <span>NexusLabs</span>
+          <span>CoreByte</span>
+          <span>CloudNova</span>
+          <span>ByteForge</span>
+          <span>ApexStack</span>
+          <span>DevSphere</span>
+          <span>NexusLabs</span>
+          <span>CoreByte</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FEATURES
+  ══════════════════════════════════════════════ -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">// Core Platform</span>
+        <h2>Built for developers<br>who move fast</h2>
+        <p>TermiFix is the intelligence layer between you and your terminal. No copy-paste, no manual searching — just instant answers.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feat-card reveal-card" data-delay="0">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+          <h3>Smart Error Detection</h3>
+          <p>Multi-pass detection engine reads exit codes, stderr patterns, and 200+ error signatures across 7 ecosystems. No false positives.</p>
+          <div class="feat-langs">
+            <span>Python</span><span>Node</span><span>Rust</span><span>Go</span><span>Docker</span><span>Git</span>
+          </div>
+        </div>
+
+        <div class="feat-card reveal-card" data-delay="1">
+          <div class="feat-icon accent-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="19" cy="5" r="3"/></svg>
+          </div>
+          <h3>Instant Fix Library</h3>
+          <p>20+ common errors resolved instantly from a local knowledge base — zero LLM call needed. <code>pip install</code>, <code>npm init</code>, SSH keys, git conflicts.</p>
+          <div class="feat-tag">⚡ Sub-100ms</div>
+        </div>
+
+        <div class="feat-card reveal-card" data-delay="2">
+          <div class="feat-icon accent-3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h5M8 16h3"/></svg>
+          </div>
+          <h3>AI Debug Assistant</h3>
+          <p>Sends error context to your local Ollama LLM with structured prompts. Gets back: Problem → Root Cause → Fix → Prevention — streamed live.</p>
+          <div class="feat-tag accent-tag-2">🧠 Streams in real-time</div>
+        </div>
+
+        <div class="feat-card reveal-card" data-delay="3">
+          <div class="feat-icon accent-4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+          </div>
+          <h3>Project Awareness</h3>
+          <p>Reads <code>package.json</code>, <code>requirements.txt</code>, <code>Cargo.toml</code>, <code>go.mod</code>, and 10+ config files to give the AI your exact stack context.</p>
+          <div class="feat-tag accent-tag-3">📁 Auto-detected</div>
+        </div>
+
+        <div class="feat-card reveal-card" data-delay="4">
+          <div class="feat-icon accent-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+          </div>
+          <h3>Error Memory Cache</h3>
+          <p>Smart fingerprinting normalizes paths and line numbers. Same error = instant cached answer. SQLite-backed, zero network, grows smarter over time.</p>
+          <div class="feat-tag accent-tag-4">🗄️ Offline forever</div>
+        </div>
+
+        <div class="feat-card reveal-card" data-delay="5">
+          <div class="feat-icon accent-6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Privacy by Design</h3>
+          <p>All AI runs locally via Ollama. API keys, passwords, and tokens are stripped by a sanitization layer before any processing. Your code stays yours.</p>
+          <div class="feat-tag accent-tag-5">🔒 Zero telemetry</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       MODULES
+  ══════════════════════════════════════════════ -->
+  <section class="modules" id="modules">
+    <div class="modules-bg">
+      <div class="modules-blob"></div>
+    </div>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">// Platform Modules</span>
+        <h2>Every tool a developer<br>actually needs</h2>
+        <p>Four precision-engineered modules that work together as one intelligent debugging platform.</p>
+      </div>
+
+      <div class="modules-grid">
+
+        <div class="module-card primary-module reveal-left">
+          <div class="module-num">01</div>
+          <div class="module-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="4" y="4" width="40" height="40" rx="4"/>
+              <path d="M14 16l6 6-6 6M22 28h12"/>
+            </svg>
+          </div>
+          <h3>TermiFix AI</h3>
+          <p>The core AI debugging engine. Streams explanations from your local Ollama model with precision-engineered prompts that force structured, actionable output every time.</p>
+          <ul class="module-features">
+            <li>Real-time token streaming</li>
+            <li>Context-aware prompt engineering</li>
+            <li>Model auto-detection & fallback</li>
+            <li>Works with Mistral, CodeLlama, Phi, Llama3</li>
+          </ul>
+          <div class="module-badge">Core Engine</div>
+        </div>
+
+        <div class="module-card reveal-right" data-delay="0">
+          <div class="module-num">02</div>
+          <div class="module-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 36L18 14l8 14 6-8 10 16"/>
+            </svg>
+          </div>
+          <h3>TraceFlow</h3>
+          <p>Advanced error tracing and intelligent log analysis. Cuts through 200-line stacktraces to surface the 3 lines that actually matter, reducing LLM tokens and improving accuracy.</p>
+          <ul class="module-features">
+            <li>Priority line extraction</li>
+            <li>Noise deduplication</li>
+            <li>Multi-language traceback parsing</li>
+          </ul>
+          <div class="module-badge mod-2">Error Analysis</div>
+        </div>
+
+        <div class="module-card reveal-right" data-delay="1">
+          <div class="module-num">03</div>
+          <div class="module-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="24" cy="24" r="18"/>
+              <path d="M24 14v10l6 6"/>
+              <path d="M14 24h2M32 24h2M24 14v2M24 34v2"/>
+            </svg>
+          </div>
+          <h3>DeployGuard</h3>
+          <p>Git-aware deployment monitoring. Reads your branch, last commit, and modified files to give the AI the full story behind why a build or deploy just failed.</p>
+          <ul class="module-features">
+            <li>Branch & commit awareness</li>
+            <li>Modified file tracking</li>
+            <li>Remote status detection</li>
+          </ul>
+          <div class="module-badge mod-3">Deploy Intel</div>
+        </div>
+
+        <div class="module-card reveal-right" data-delay="2">
+          <div class="module-num">04</div>
+          <div class="module-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="8" width="14" height="14" rx="2"/>
+              <rect x="26" y="8" width="14" height="14" rx="2"/>
+              <rect x="8" y="26" width="14" height="14" rx="2"/>
+              <rect x="26" y="26" width="14" height="14" rx="2"/>
+            </svg>
+          </div>
+          <h3>StackSense</h3>
+          <p>Scans your project files to identify language, framework, package manager, and key dependencies. Gives the AI the context it needs to stop guessing and start solving.</p>
+          <ul class="module-features">
+            <li>10+ config file formats</li>
+            <li>Framework detection (Next.js, Django, FastAPI…)</li>
+            <li>Dependency graph awareness</li>
+          </ul>
+          <div class="module-badge mod-4">Stack Intel</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SOLUTIONS
+  ══════════════════════════════════════════════ -->
+  <section class="solutions" id="solutions">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">// Solutions</span>
+        <h2>Built for every<br>engineering team</h2>
+      </div>
+      <div class="solutions-grid">
+        <div class="sol-card reveal-card" data-delay="0">
+          <div class="sol-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><rect x="18" y="2" width="12" height="12" rx="2"/><rect x="2" y="18" width="12" height="12" rx="2"/><rect x="18" y="18" width="12" height="12" rx="2"/></svg>
+          </div>
+          <h4>SaaS Platforms</h4>
+          <p>Keep production stable. Catch runtime errors before customers do.</p>
+        </div>
+        <div class="sol-card reveal-card" data-delay="1">
+          <div class="sol-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="12"/><path d="M16 8v8l5 5"/></svg>
+          </div>
+          <h4>DevOps Teams</h4>
+          <p>Diagnose CI/CD failures, Docker errors, and deployment issues instantly.</p>
+        </div>
+        <div class="sol-card reveal-card" data-delay="2">
+          <div class="sol-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h24M4 20h24M12 4v24M20 4v24"/></svg>
+          </div>
+          <h4>Cloud Infrastructure</h4>
+          <p>Debug kubectl, Terraform, and cloud CLI errors with full context.</p>
+        </div>
+        <div class="sol-card reveal-card" data-delay="3">
+          <div class="sol-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="24" height="18" rx="2"/><path d="M10 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/></svg>
+          </div>
+          <h4>Enterprise Engineering</h4>
+          <p>On-premise AI with zero data leakage. Full audit trails via local SQLite.</p>
+        </div>
+        <div class="sol-card reveal-card" data-delay="4">
+          <div class="sol-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4l3 6h6l-5 4 2 6-6-4-6 4 2-6-5-4h6z"/></svg>
+          </div>
+          <h4>AI Product Companies</h4>
+          <p>Build faster with an AI assistant that understands your ML stack and Python errors.</p>
+        </div>
+        <div class="sol-card reveal-card" data-delay="5">
+          <div class="sol-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><circle cx="24" cy="8" r="3"/><circle cx="24" cy="24" r="3"/><path d="M16 12l5-3M16 14l5 7"/></svg>
+          </div>
+          <h4>Solo Developers</h4>
+          <p>Your personal AI debugging companion. No subscriptions. Runs entirely on your machine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       HOW IT WORKS
+  ══════════════════════════════════════════════ -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="how-bg">
+      <div class="how-line"></div>
+    </div>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">// How It Works</span>
+        <h2>From error to fix<br>in under 2 seconds</h2>
+        <p>Five intelligent steps happen automatically, every time you hit an error.</p>
+      </div>
+
+      <div class="steps-wrap">
+
+        <div class="step reveal-step" data-step="1">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h4>Run Normally</h4>
+            <p>Start TermiFix once. Then run all your commands inside it — exactly like a regular terminal. No workflow change needed.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step reveal-step" data-step="2">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </div>
+            <h4>Error Detected</h4>
+            <p>Every output is scanned in real-time using exit codes, 200+ error patterns, and false-positive filtering across all major ecosystems.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step reveal-step" data-step="3">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10H12z"/><path d="M12 12l8-8"/></svg>
+            </div>
+            <h4>Context Built</h4>
+            <p>StackSense reads your project files. DeployGuard reads your git state. TraceFlow compresses the stacktrace. All assembled in milliseconds.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step reveal-step" data-step="4">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h4>AI Analyzes</h4>
+            <p>Your local Ollama LLM receives a precision-engineered prompt and streams back: Problem → Root Cause → Exact Fix → Prevention tips.</p>
+          </div>
+          <div class="step-connector"></div>
+        </div>
+
+        <div class="step reveal-step" data-step="5">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20,6 9,17 4,12"/></svg>
+            </div>
+            <h4>One-Click Fix</h4>
+            <p>Press <kbd>y</kbd> to run the suggested fix command. TermiFix executes it, verifies it worked, and caches the solution for next time.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       MODELS
+  ══════════════════════════════════════════════ -->
+  <section class="models-section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">// Supported Models</span>
+        <h2>Bring your own model.<br>We make it smarter.</h2>
+        <p>TermiFix works with any Ollama-compatible model. Pick based on your hardware and needs.</p>
+      </div>
+      <div class="models-grid">
+        <div class="model-card reveal-card best" data-delay="0">
+          <div class="model-best-tag">Best for Code</div>
+          <div class="model-name">CodeLlama</div>
+          <div class="model-size">3.8 GB</div>
+          <div class="model-bar"><div class="model-fill" style="width:95%"></div></div>
+          <p>Deep code understanding. Best accuracy for Python, JS, Rust, Go errors.</p>
+        </div>
+        <div class="model-card reveal-card" data-delay="1">
+          <div class="model-name">Mistral 7B</div>
+          <div class="model-size">4.1 GB</div>
+          <div class="model-bar"><div class="model-fill" style="width:85%"></div></div>
+          <p>Great all-rounder. Fast responses. Excellent for general debugging.</p>
+        </div>
+        <div class="model-card reveal-card" data-delay="2">
+          <div class="model-name">Phi-3</div>
+          <div class="model-size">2.3 GB</div>
+          <div class="model-bar"><div class="model-fill" style="width:75%"></div></div>
+          <p>Lightweight and fast. Perfect for developers on lower-end hardware.</p>
+        </div>
+        <div class="model-card reveal-card" data-delay="3">
+          <div class="model-name">DeepSeek Coder</div>
+          <div class="model-size">6.7 GB</div>
+          <div class="model-bar"><div class="model-fill" style="width:98%"></div></div>
+          <p>Deep code analysis. Best for complex multi-file debugging sessions.</p>
+        </div>
+      </div>
+      <p class="models-note reveal">Switch models anytime inside TermiFix with <kbd>!model</kbd> — no restart required.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       TESTIMONIALS
+  ══════════════════════════════════════════════ -->
+  <section class="testimonials" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">// Developer Love</span>
+        <h2>What developers say</h2>
+      </div>
+
+      <div class="testi-carousel">
+        <div class="testi-track" id="testiTrack">
+
+          <div class="testi-card">
+            <div class="testi-quote">"</div>
+            <p>"TermiFix caught a <code>ModuleNotFoundError</code> I'd been debugging for 20 minutes and fixed it in 0.3 seconds. The instant fix library is genuinely magical."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background: linear-gradient(135deg, #00FF88, #00D4FF)">JK</div>
+              <div>
+                <strong>James K.</strong>
+                <span>Senior Backend Engineer · CloudNova</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-quote">"</div>
+            <p>"Running it with CodeLlama locally means I get AI-quality debugging with zero network latency and zero privacy concerns. This is what developer tools should look like."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background: linear-gradient(135deg, #FF3E6C, #FF9500)">SR</div>
+              <div>
+                <strong>Sana R.</strong>
+                <span>DevOps Lead · ByteForge</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-quote">"</div>
+            <p>"The project awareness blew me away. It read my <code>package.json</code>, saw I was on Next.js, and gave me a Next-specific fix instead of a generic one. Instantly useful."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background: linear-gradient(135deg, #A855F7, #00D4FF)">MP</div>
+              <div>
+                <strong>Marcus P.</strong>
+                <span>Full-Stack Dev · ApexStack</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-quote">"</div>
+            <p>"We deployed TermiFix across our whole engineering team. The error cache means common deployment errors never slow anyone down twice. Huge productivity win."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" style="background: linear-gradient(135deg, #00FF88, #A855F7)">AL</div>
+              <div>
+                <strong>Aiko L.</strong>
+                <span>CTO · DevSphere</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="testi-controls">
+          <button class="testi-btn" id="testiPrev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="testi-dots" id="testiDots"></div>
+          <button class="testi-btn" id="testiNext" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       PRICING
+  ══════════════════════════════════════════════ -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-bg">
+      <div class="pricing-blob"></div>
+    </div>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">// Pricing</span>
+        <h2>Simple pricing.<br>Serious power.</h2>
+        <p>All plans include local LLM processing. No AI API fees. Ever.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="price-card reveal-card" data-delay="0">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount"><span class="price-curr">$</span>0<span class="price-per">/mo</span></div>
+          <p class="price-desc">Perfect for solo developers exploring local AI debugging.</p>
+          <ul class="price-features">
+            <li><span class="pf-check">✓</span> Real-time error detection</li>
+            <li><span class="pf-check">✓</span> 20+ instant fixes</li>
+            <li><span class="pf-check">✓</span> Local LLM (Ollama)</li>
+            <li><span class="pf-check">✓</span> SQLite error cache</li>
+            <li><span class="pf-check">✓</span> Session history</li>
+            <li><span class="pf-x">✗</span> Team sync</li>
+            <li><span class="pf-x">✗</span> Priority support</li>
+          </ul>
+          <a href="#" class="btn-price-ghost">Get Started Free</a>
+        </div>
+
+        <div class="price-card pro reveal-card" data-delay="1">
+          <div class="price-popular">Most Popular</div>
+          <div class="price-tier">Pro</div>
+          <div class="price-amount"><span class="price-curr">$</span>12<span class="price-per">/mo</span></div>
+          <p class="price-desc">The full TermiFix experience. For developers who are serious about shipping.</p>
+          <ul class="price-features">
+            <li><span class="pf-check">✓</span> Everything in Starter</li>
+            <li><span class="pf-check">✓</span> Git-aware debugging</li>
+            <li><span class="pf-check">✓</span> Framework detection</li>
+            <li><span class="pf-check">✓</span> Session export (Markdown)</li>
+            <li><span class="pf-check">✓</span> Multi-model switching</li>
+            <li><span class="pf-check">✓</span> Search history</li>
+            <li><span class="pf-check">✓</span> Priority support</li>
+          </ul>
+          <a href="#" class="btn-price-primary">Start Pro</a>
+        </div>
+
+        <div class="price-card reveal-card" data-delay="2">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount"><span class="price-curr"></span>Custom</div>
+          <p class="price-desc">Team-wide deployment with shared error cache and admin controls.</p>
+          <ul class="price-features">
+            <li><span class="pf-check">✓</span> Everything in Pro</li>
+            <li><span class="pf-check">✓</span> Shared team error cache</li>
+            <li><span class="pf-check">✓</span> On-premise deployment</li>
+            <li><span class="pf-check">✓</span> Admin dashboard</li>
+            <li><span class="pf-check">✓</span> Custom model support</li>
+            <li><span class="pf-check">✓</span> Audit logs</li>
+            <li><span class="pf-check">✓</span> Dedicated support</li>
+          </ul>
+          <a href="#" class="btn-price-ghost">Contact Sales</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CTA SECTION
+  ══════════════════════════════════════════════ -->
+  <section class="cta-section" id="contact">
+    <div class="cta-bg">
+      <div class="cta-blob-1"></div>
+      <div class="cta-blob-2"></div>
+      <div class="cta-grid"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content reveal">
+        <span class="section-tag">// Get Started</span>
+        <h2>Start fixing errors faster.<br>Install in 60 seconds.</h2>
+        <p>One pip install. One Ollama model. Your terminal, supercharged.</p>
+
+        <div class="cta-install-block">
+          <div class="install-step">
+            <span class="install-num">1</span>
+            <div class="install-cmd">
+              <code>pip install -r requirements.txt</code>
+              <button class="copy-btn" data-copy="pip install -r requirements.txt" title="Copy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="install-step">
+            <span class="install-num">2</span>
+            <div class="install-cmd">
+              <code>ollama pull codellama</code>
+              <button class="copy-btn" data-copy="ollama pull codellama" title="Copy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="install-step">
+            <span class="install-num">3</span>
+            <div class="install-cmd">
+              <code>python termifix.py</code>
+              <button class="copy-btn" data-copy="python termifix.py" title="Copy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-btns">
+          <a href="#pricing" class="btn-primary large">
+            <span>Download TermiFix</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          </a>
+          <a href="mailto:hello@termifix.dev" class="btn-ghost">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo footer-logo">
+            <span class="logo-bracket">[</span><span class="logo-text">Termi</span><span class="logo-accent">Fix</span><span class="logo-bracket">]</span>
+          </a>
+          <p>AI-powered terminal debugging.<br>Local LLMs. Zero telemetry. Built for developers who care about privacy and speed.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="Discord">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.001.02.01.04.028.052a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#modules">Modules</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">Model Guide</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <div class="footer-newsletter">
+            <h5>Stay Updated</h5>
+            <form class="newsletter-form" id="newsletterForm">
+              <input type="email" placeholder="your@email.com" required>
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TermiFix. All rights reserved. Built with local AI. 🔒</p>
+        <p class="footer-stack">Python · Ollama · SQLite · Rich · Zero Network</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
